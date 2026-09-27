@@ -1,33 +1,10 @@
-import React from 'react';
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
+import { Redirect } from 'expo-router';
 import { useAuth } from '@/context/auth-context';
-import { LoginScreen } from '@/components/login-screen';
-import { DashboardScreen } from '@/components/dashboard-screen';
 
-export default function HomeScreen() {
+export default function IndexRoute() {
   const { user, isLoading } = useAuth();
 
-  if (isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#10b981" />
-      </View>
-    );
-  }
+  if (isLoading) return null;
 
-  if (!user) {
-    return <LoginScreen />;
-  }
-
-  return <DashboardScreen />;
+  return user ? <Redirect href="/(app)" /> : <Redirect href="/(auth)/login" />;
 }
-
-const styles = StyleSheet.create({
-  loadingContainer: {
-    flex: 1,
-    backgroundColor: '#ffffff',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
-

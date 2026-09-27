@@ -1,14 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import * as SecureStore from 'expo-secure-store';
 import { apiClient, TOKEN_KEY, USER_KEY } from '@/api/client';
-
-export interface User {
-  id: number;
-  name: string;
-  email: string;
-  phone?: string;
-  is_admin?: boolean;
-}
+import { User } from '@/types';
 
 interface AuthContextType {
   user: User | null;

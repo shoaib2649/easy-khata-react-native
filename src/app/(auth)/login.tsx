@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { useAuth } from '@/context/auth-context';
 
-export function LoginScreen() {
+export default function LoginRoute() {
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
